@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-     Copyright 2018, Data61, CSIRO
-
-     SPDX-License-Identifier: BSD-2-Clause
+   Copyright 2022 seL4 Project a Series of LF Projects, LLC
+   SPDX-License-Identifier: BSD-2-Clause
 -->
 <manifest>
-
-  <remote fetch="../SEL4PROJ" name="SEL4PROJ"/>
-  <remote fetch="../seL4" name="seL4"/>
-  <remote fetch="https://github.com/tass-belgium" name="picotcp" />
-  <remote fetch="https://github.com/ruslo" name="polly" />
-  <remote fetch="https://github.com/zeromq" name="zeromq" />
-  <remote fetch="https://git.savannah.gnu.org/git/" name="lwip"/>
-
-  <default revision="master" remote="seL4"/>
-
-  <project name="camkes-tool.git" path="projects/camkes-tool">
-    <linkfile dest="camkes_README.md" src="docs/index.md"/>
+  <remote name="SEL4PROJ" fetch="../SEL4PROJ"/>
+  <remote name="lwip" fetch="https://git.savannah.gnu.org/git/"/>
+  <remote name="picotcp" fetch="https://github.com/tass-belgium"/>
+  <remote name="polly" fetch="https://github.com/ruslo"/>
+  <remote name="seL4" fetch="../seL4"/>
+  <remote name="zeromq" fetch="https://github.com/zeromq"/>
+   
+  <remote name="sel4devkit" fetch="https://github.com/sel4devkit"/>
+  <remote name="stephen" fetch="https://github.com/stephen-williams-capgemini"/>
+  
+  <default remote="seL4" revision="master"/>
+  
+  <project name="camkes-tool.git" path="projects/camkes-tool" revision="7c3165356fdc378f71315ecb952a54dd48bfa56e" upstream="master" dest-branch="master">
+    <linkfile src="docs/index.md" dest="camkes_README.md"/>
   </project>
-  <project name="camkes-vm.git" path="projects/vm">
-    <linkfile dest="README.md" src="README.md"/>
+  <project name="camkes-vm-examples.git" path="projects/vm-examples" revision="92af59241d05b5261ab0a777b822766d171ece82" upstream="master" dest-branch="master">
+    <linkfile src="easy-settings.cmake" dest="easy-settings.cmake"/>
   </project>
-  <project name="camkes-vm-examples.git" path="projects/vm-examples">
-    <linkfile dest="easy-settings.cmake" src="easy-settings.cmake"/>
+  <project name="camkes-vm-images.git" path="projects/camkes-vm-images" revision="69af5316aa39d43d38070984338b334083d2065d" upstream="master" dest-branch="master"/>
+  <project name="camkes-vm-linux.git" path="projects/vm-linux" revision="3eafe89fffc3decb385c1ec74c2d744a09b6327e" upstream="master" dest-branch="master"/>
+  <project name="camkes-vm.git" path="projects/vm" revision="348e16fd52a8f0a275d6f86e628bc9757909e057" upstream="master" dest-branch="master">
+    <linkfile src="README.md" dest="README.md"/>
   </project>
-  <project name="camkes-vm-images.git" path="projects/camkes-vm-images"/>
-  <project name="capdl.git" path="projects/capdl"/>
-  <project name="global-components.git" path="projects/global-components"/>
-  <project name="musllibc.git" path="projects/musllibc" revision="sel4"/>
-  <project name="sel4runtime" path="projects/sel4runtime"/>
-  <project name="picotcp.git" path="projects/picotcp" remote="picotcp" revision="refs/tags/v1.7.0"/>
-  <project name="seL4.git" path="kernel"/>
-  <project name="seL4_libs" path="projects/seL4_libs"/>
-  <project name="seL4_tools.git" path="tools/seL4">
-    <linkfile dest="griddle" src="cmake-tool/griddle"/>
-    <linkfile dest="init-build.sh" src="cmake-tool/init-build.sh"/>
+  <project name="capdl.git" path="projects/capdl" revision="400076e80a51fc135f1b7d3d82c124a933d7ab77" upstream="master" dest-branch="master"/>
+  <project name="global-components.git" path="projects/global-components" remote="sel4devkit" revision="sprint4" upstream="sprint4" dest-branch="sprint4"/>
+  <project name="libzmq" path="projects/libzmq" remote="zeromq" revision="d062edd8c142384792955796329baf1e5a3377cd" upstream="refs/tags/v4.2.5" dest-branch="refs/tags/v4.2.5"/>
+  <project name="lwip.git" path="projects/lwip" remote="lwip" revision="159e31b689577dbf69cf0683bbaffbd71fa5ee10" upstream="refs/tags/STABLE-2_1_2_RELEASE" dest-branch="refs/tags/STABLE-2_1_2_RELEASE"/>
+  <project name="musllibc.git" path="projects/musllibc" remote="stephen" revision="3d09eb5fb16e67af10c80d8eb16437f2925cea44" upstream="issue_17" dest-branch="issue_17"/>
+  <project name="picotcp.git" path="projects/picotcp" remote="picotcp" revision="13c00a067190f5ec62340ed932a2bb833c366d63" upstream="refs/tags/v1.7.0" dest-branch="refs/tags/v1.7.0"/>
+  <project name="polly" path="tools/polly" remote="polly" revision="ef7e79c2c297d456f2742fd0b976f555d058d4e0" upstream="master" dest-branch="master"/>
+  <project name="projects_libs.git" path="projects/projects_libs" remote="sel4devkit" revision="maaxboard-usb" upstream="maaxboard-usb" dest-branch="maaxboard-usb"/>
+  <project name="seL4.git" path="kernel" remote="sel4devkit" revision="maaxboard-new-dts" upstream="maaxboard-new-dts" dest-branch="maaxboard-new-dts"/>
+  <project name="seL4_libs.git" path="projects/seL4_libs" revision="d8ae2c44e92d1bf19891344eb038752565f0b30e" upstream="master" dest-branch="master"/>
+  <project name="seL4_projects_libs.git" path="projects/seL4_projects_libs" revision="gicv3" upstream="gicv3" dest-branch="gicv3"/>
+  <project name="seL4_tools.git" path="tools/seL4" remote="sel4devkit" revision="avnet-maaxboard" upstream="avnet-maaxboard" dest-branch="avnet-maaxboard">
+    <linkfile src="cmake-tool/init-build.sh" dest="init-build.sh"/>
+    <linkfile src="cmake-tool/griddle" dest="griddle"/>
   </project>
-  <project name="util_libs.git" path="projects/util_libs"/>
-  <project name="projects_libs.git" path="projects/projects_libs"/>
-  <project name="camkes-vm-linux.git" path="projects/vm-linux"/>
-  <project name="seL4_projects_libs.git" path="projects/seL4_projects_libs"/>
-  <project name="polly" remote="polly" path="tools/polly" />
-  <project name="libzmq" remote="zeromq" path="projects/libzmq" revision="refs/tags/v4.2.5" />
-  <project name="lwip.git" path="projects/lwip" remote="lwip" revision="refs/tags/STABLE-2_1_2_RELEASE"/>
+  <project name="sel4runtime" path="projects/sel4runtime" revision="d935dd05da0cf959e9fd0140af913dc6fdaa0221" upstream="master" dest-branch="master"/>
+  <project name="util_libs.git" path="projects/util_libs" remote="sel4devkit" revision="avnet-maaxboard" upstream="avnet-maaxboard" dest-branch="avnet-maaxboard"/>
 </manifest>
